@@ -2,7 +2,7 @@
    - Music gate: a stack of real instruments drops into place; choose with or without music.
    - The velvet curtain is driven by scroll: it is closed on every boundary between acts
      (showing the playbill for the coming act) and opens fully while an act is centred.
-   - Act I: the batik painting pans inside the arch from the palace gate to the couple.
+   - The royal window: zoom into the gilded window; the elephant procession walks past its panes, left to right.
    - Words rise in on reveal; countdown; smooth scrolling via Lenis. */
 (function () {
   'use strict';
@@ -11,7 +11,12 @@
   var audio = document.querySelector('[data-music]'), muteBtn = document.querySelector('[data-mute]');
   var halves = document.querySelectorAll('.half'), bills = document.querySelectorAll('.bill');
   var acts = Array.prototype.slice.call(document.querySelectorAll('[data-act-sec]'));
-  var pan = document.querySelector('[data-pan]'), panImg = pan.querySelector('img');
+  var scene = document.querySelector('[data-wscene]'), wbox = document.querySelector('[data-wbox]'), proc = document.querySelector('[data-proc]'), wcap = document.querySelector('[data-wcap]');
+  var legs = Array.prototype.slice.call(document.querySelectorAll('[data-leg]')), bobs = Array.prototype.slice.call(document.querySelectorAll('[data-bob]'));
+  var ebody = document.querySelector('[data-ebody]'), trunk = document.querySelector('[data-trunk]');
+  var temple = document.querySelector('[data-temple]'), sun = document.querySelector('[data-sun]'), sky2 = document.querySelector('[data-sky2]'), rays = document.querySelector('[data-rays]');
+  var mrings = Array.prototype.slice.call(rays.querySelectorAll('.mr')).reverse(), mdusk = rays.querySelector('.mdusk'), msun = rays.querySelector('.msun');
+  var walkPh = 0, lastQ = null, lastT = performance.now();
   var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
   var sm = function (t) { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); };
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -66,15 +71,46 @@
     halves[0].style.transform = 'translate3d(' + (-open * 101).toFixed(2) + '%,0,0)';
     halves[1].style.transform = 'translate3d(' + (open * 101).toFixed(2) + '%,0,0)';
     var gate = body.getAttribute('data-state') === 'gate';
-    bills.forEach(function (b, i) { b.style.opacity = (!gate && i === (best === 0 ? 0 : best + 1) ? (1 - open) : 0).toFixed(3); });
+    bills.forEach(function (b, i) { b.style.opacity = (!gate && i === (best === 0 ? 0 : best + 1) ? clamp(1 - open * 2.2, 0, 1) : 0).toFixed(3); });
     halves.forEach(function (h) { h.style.pointerEvents = open > .5 ? 'none' : 'auto'; });
 
-    // Act I: from the palace gate to the couple on the elephant
-    var r = pan.getBoundingClientRect(), W = r.width, Hh = r.height;
-    var t = sm((vh - r.top) / (vh + Hh));
-    var from = { x: 1236, y: 520, z: 1.25 }, to = { x: 880, y: 290, z: 2.6 };
-    var x = from.x + (to.x - from.x) * t, y = from.y + (to.y - from.y) * t, z = (from.z + (to.z - from.z) * t) * W / 1776;
-    panImg.style.transform = 'translate3d(' + (W / 2 - x * z).toFixed(1) + 'px,' + (Hh / 2 - y * z).toFixed(1) + 'px,0) scale(' + z.toFixed(4) + ')';
+    // the royal window: zoom in to peek through the panes; the procession walks left to right with the scroll
+    var now = performance.now(), dt = Math.min(.05, (now - lastT) / 1000); lastT = now;
+    var range = scene.offsetHeight - vh, p = clamp((window.scrollY - scene.offsetTop) / range, 0, 1);
+    var Wb = wbox.offsetWidth, Hb = wbox.offsetHeight, vw = window.innerWidth;
+    var Zt = clamp(Math.min(.86 * vh / (.5214 * Hb), .84 * vw / (.3818 * Wb)), 1, 2.2), e = sm(p / .1), Z = 1 + (Zt - 1) * e;
+    var dx = 0, dy = (.5536 - .5) * Hb;
+    wbox.style.transform = 'translate3d(' + (-dx * Z * e).toFixed(1) + 'px,' + (-dy * Z * e).toFixed(1) + 'px,0) scale(' + Z.toFixed(4) + ')';
+    wcap.style.opacity = (1 - e).toFixed(3);
+    var q = clamp((p - .05) / .45, 0, 1);
+    proc.style.transform = 'translate3d(' + (-100 + 142.6 * q).toFixed(2) + '%,0,0)';
+    if (lastQ !== null) walkPh += Math.abs(q - lastQ) * 95;
+    lastQ = q;
+    walkPh += dt * .35; // a slow idle step so the elephant never freezes mid-stride
+    legs.forEach(function (l) { var o = +l.getAttribute('data-leg') * Math.PI; l.style.transform = 'rotate(' + (Math.sin(walkPh + o) * 9).toFixed(2) + 'deg)'; });
+    ebody.style.transform = 'translate3d(0,' + (-Math.abs(Math.cos(walkPh)) * 0.9).toFixed(2) + '%,0)';
+    trunk.style.transform = 'translate3d(0,' + (-Math.abs(Math.cos(walkPh)) * 5).toFixed(2) + '%,0) rotate(' + (Math.sin(walkPh * .5 + now / 1600) * 6).toFixed(2) + 'deg)';
+    bobs.forEach(function (b) { var o = +b.getAttribute('data-bob'), ph = walkPh * 2 + o; b.style.transform = 'translate3d(0,' + (-Math.abs(Math.sin(ph)) * 1.6).toFixed(2) + '%,0) rotate(' + (Math.sin(ph) * 1.2).toFixed(2) + 'deg)'; });
+    // dawn: the gopuram rises, the sun climbs above it, and sunset rays pour out of the window to fill the screen
+    var tr = sm((p - .42) / .2), su = sm((p - .52) / .2), ry = sm((p - .68) / .27);
+    temple.style.transform = 'translate3d(0,' + (100 - 92 * tr).toFixed(2) + '%,0)';
+    temple.style.filter = 'brightness(' + (.8 + .25 * su).toFixed(3) + ')';
+    sky2.style.opacity = su.toFixed(3);
+    sun.style.opacity = clamp(su * 3, 0, 1).toFixed(3);
+    sun.style.transform = 'translate3d(0,' + (260 - 255 * su).toFixed(1) + '%,0)';
+    if (ry > 0) {
+      var sr = sun.getBoundingClientRect(), wr = rays.parentNode.getBoundingClientRect();
+      rays.style.opacity = clamp(ry * 6, 0, 1).toFixed(3);
+      rays.style.transform = 'translate3d(' + (sr.left + sr.width / 2 - wr.left).toFixed(1) + 'px,' + (sr.top + sr.height / 2 - wr.top).toFixed(1) + 'px,0) scale(' + (.035 + .85 * Math.pow(ry, 1.6)).toFixed(4) + ')';
+      // the rangoli opens ring by ring from the sun, each ring turning into place; the dusk fills behind it
+      mrings.forEach(function (g, i) {
+        var rp = sm((ry * 1.3 - i * .1) / .32), dir = i % 2 ? 1 : -1;
+        g.setAttribute('opacity', rp.toFixed(3));
+        g.setAttribute('transform', 'rotate(' + (dir * ((1 - rp) * 50 + now / 900)).toFixed(2) + ') scale(' + (.6 + .4 * rp).toFixed(4) + ')');
+      });
+      mdusk.setAttribute('opacity', sm(ry / .5).toFixed(3));
+      msun.setAttribute('transform', 'scale(' + (1 + .06 * Math.sin(now / 700)).toFixed(3) + ')');
+    } else rays.style.opacity = '0';
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);

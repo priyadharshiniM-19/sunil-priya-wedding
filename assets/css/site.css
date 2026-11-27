@@ -243,3 +243,57 @@ body.play .bill-0 > :nth-child(5) { animation-delay: 1.6s; } body.play .bill-0 >
 .gate-sub { color: #EED7AE; } .gate-sub b { color: var(--gold-hi); }
 .gbtn { background: #F6E6C6; } .gbtn.main { background: linear-gradient(180deg, #E9C27A, #B8862F); color: #3A0509; } .gbtn.main b { color: #3A0509; }
 .ins { filter: drop-shadow(0 12px 14px #000a); }
+
+/* ---- 0 · the royal window: a gilded window on a slate wall; the procession passes behind its panes ---- */
+.act.win { display: block; height: 640vh; min-height: 0; padding: 0; background: #1C2128; }
+.ws { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center;
+}
+.ws::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 120% 90% at 50% 50%, #0000 45%, #12161Cc0 100%); }
+.ws-cap { position: absolute; z-index: 3; top: 2.6vh; left: 0; right: 0; margin: 0; text-align: center; font-family: var(--d); font-size: clamp(20px, 2.4vw, 32px); color: #F3D58E; letter-spacing: .02em; text-shadow: 0 2px 12px #0009; transition: opacity .4s; }
+.ws-cap i { font-family: var(--c); font-style: normal; color: #E9DCC4; font-size: .78em; }
+.wbox { --wh: min(92vh, 84vw * 1400 / 1100); position: relative; height: var(--wh); width: calc(var(--wh) * 1100 / 1400); flex: none; transform-origin: 50% 50%; will-change: transform; }
+/* the slate roof the window sits in: part of the box, so it zooms with the window */
+.wbox::before { content: ""; position: absolute; left: -300%; right: -300%; top: -300%; bottom: -300%; z-index: 0; background: #1E242B url(../img/stage/slate_dark.webp) 50% 50% / auto 2.4%; box-shadow: inset 0 0 0 1px #0000; }
+.wimg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+/* the window's opening (340–760 × 410–1140 of the 1100 × 1400 drawing) */
+.wview { position: absolute; z-index: 1; left: 30.909%; top: 29.286%; width: 38.182%; height: 52.143%; overflow: hidden; border-radius: 50% 50% 0 0 / 28.77% 28.77% 0 0; background: #F4D9A6; }
+.wsky { position: absolute; inset: 0; background: linear-gradient(180deg, #E7A777 0%, #F2C58F 38%, #F8DDB0 70%, #F3D2A0 100%); }
+.wsky::after { content: ""; position: absolute; left: -20%; right: -20%; bottom: 0; height: 9%; background: radial-gradient(ellipse 50% 70% at 50% 100%, #9C6A3A66, #0000 70%); }
+.proc { position: absolute; bottom: -6%; left: 0; width: 235%; aspect-ratio: 1040 / 670; will-change: transform; }
+.proc img { position: absolute; max-width: none; height: auto; will-change: transform; }
+.p-drum  { left: 3.94%;  top: 57.9%;  width: 17.31%; }
+.p-umb   { left: 21.25%; top: 40%;    width: 16.15%; }
+.p-body  { left: 30.1%;  top: 3.73%;  width: 53.65%; }
+.l-rl    { left: 31.35%; top: 82.99%; width: 8.27%; transform-origin: 55.8% 17.3%; }
+.l-rr    { left: 41.54%; top: 82.99%; width: 7.02%; transform-origin: 49.3% 16.5%; }
+.l-fl    { left: 55.38%; top: 82.99%; width: 8.17%; transform-origin: 47% 16.5%; }
+.l-fr    { left: 66.54%; top: 82.99%; width: 7.79%; transform-origin: 50.6% 16.7%; }
+.p-trunk { left: 75.1%;  top: 75.82%; width: 5.29%; transform-origin: 36% 0; }
+.p-lead  { left: 81.54%; top: 55.37%; width: 13.56%; }
+.wsky2 { position: absolute; inset: 0; opacity: 0; background: linear-gradient(180deg, #5A2558 0%, #B8414E 30%, #EE7A3E 58%, #F8B657 80%, #FCD98E 100%); }
+.wsun { position: absolute; left: 50%; top: 0; width: 34%; aspect-ratio: 1; margin-left: -17%; border-radius: 50%; opacity: 0; will-change: transform;
+  background: radial-gradient(circle, #FFF7D8 0 38%, #FFD978 50%, #FFB34A88 62%, #FFB34A00 72%); box-shadow: 0 0 60px 30px #FFC76A66; }
+.wtemple { position: absolute; left: -14%; bottom: 0; width: 128%; max-width: none; transform: translate3d(0,100%,0); will-change: transform, filter; }
+.wrays { position: absolute; z-index: 3; left: 0; top: 0; width: 300vmax; height: 300vmax; margin: -150vmax 0 0 -150vmax; pointer-events: none; opacity: 0; will-change: transform, opacity; }
+.wrays svg { width: 100%; height: 100%; display: block; overflow: visible; }
+@media (max-width: 760px) { .ws-cap { top: 12vh; padding: 0 60px; font-size: 19px; } .ws-cap i { display: block; } }
+
+.ganesha-top { width: clamp(120px, 12vw, 190px); margin-top: 120px; margin-bottom: 10px; filter: drop-shadow(0 14px 16px #2A140866); animation: float 5s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-8px); } }
+.rv.ganesha-top.in { animation: float 5s ease-in-out infinite; }
+.a1 .h { margin-top: 0; }
+.arch img { object-position: 50% 50%; }
+.toran-fin { width: min(640px, 86vw); margin-bottom: -20px; position: relative; z-index: 2; }
+.wide2 { width: min(560px, 86vw) !important; } .wide2 img { aspect-ratio: 4 / 3 !important; }
+.a6 .h { margin-top: 30px; }
+.corridor img { object-position: 50% 50%; }
+
+/* family photos: one ornate gold frame, the same arched shape for every photo */
+.a3 .ph { position: relative; padding: 14px; border-radius: 50% 50% 14px 14px / 34% 34% 14px 14px;
+  background: linear-gradient(145deg, #F3D58E, #B8862F 30%, #7A5316 52%, #E9C27A 76%, #9C6A22);
+  box-shadow: 0 0 0 2px #5A3416, inset 0 0 0 3px #F6E1A6, inset 0 0 0 7px #7A5316, 0 30px 50px -26px #2A1408; }
+.a3 .ph img { border-radius: 48% 48% 6px 6px / 32% 32% 6px 6px !important; }
+.a3 .ph::before { content: ""; position: absolute; left: 50%; top: -18px; width: 44px; height: 44px; margin-left: -22px; z-index: 2; border-radius: 50%;
+  background: url("../img/flowers/marigold_4.webp") center / cover; box-shadow: 0 4px 8px #2A140866; }
+.a3 .ph.wide { width: min(820px, 100%); } .a3 .ph.wide img { aspect-ratio: 4 / 3; }
+.a3 .ph.arch2 { width: min(300px, 90%); } .a3 .ph.arch2 img { aspect-ratio: 3 / 4; }

@@ -38,3 +38,10 @@
 - corridor_kolam: File:Ekambareswarar Temple Kanchipuram Tamil Nadu - mandapam and walkway.jpg — Ms Sarah Welch — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Ekambareswarar_Temple_Kanchipuram_Tamil_Nadu_-_mandapam_and_walkway.jpg
 - pillar: File:Varadharaja Perumal temple, pilgrims rest mandapa pillars, Kanchipuram Tamil Nadu - 12.jpg — Ms Sarah Welch — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Varadharaja_Perumal_temple,_pilgrims_rest_mandapa_pillars,_Kanchipuram_Tamil_Nadu_-_12.jpg
 - betel: File:Areca-Betel Plate.jpg — Ananthy94 — CC BY-SA 3.0 — https://commons.wikimedia.org/wiki/File:Areca-Betel_Plate.jpg
+
+## Royal window scene
+- Royal window: drawn for this page (vector, rendered in high resolution).
+- Sunrise rangoli mandala: drawn for this page, after a gold mandala reference.
+- Slate wall texture: generated for this page.
+- Procession figures: from the couple's own invitation art (cleaned and upscaled).
+- “Srirangam Vellai Gopuram 2” by Meenakshi Sairam, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Srirangam_Vellai_Gopuram_2.jpg (background removed, colour-graded to dusk).
