@@ -44,4 +44,4 @@
 - Sunrise rangoli mandala: drawn for this page, after a gold mandala reference.
 - Slate wall texture: generated for this page.
 - Procession figures: from the couple's own invitation art (cleaned and upscaled).
-- “Srirangam Vellai Gopuram 2” by Meenakshi Sairam, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Srirangam_Vellai_Gopuram_2.jpg (background removed, colour-graded to dusk).
+- “Brihadeeswarar Temple 3499” by Vengolis, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Brihadeeswarar_Temple_3499.jpg (background removed, colour-graded to dusk).
